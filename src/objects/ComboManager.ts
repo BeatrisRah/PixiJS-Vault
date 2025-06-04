@@ -27,31 +27,33 @@ export class ComboManager {
         const [expectedSteps, expectedDir] = this.combo[this.currentStep];
 
         if (dir !== expectedDir) {
-            console.log('fail');
-            return 
+            this.reset()
+            return 'fail'
         }
 
         this.accumulatedSteps += steps;
 
         if (this.accumulatedSteps > expectedSteps) {
-            console.log('fail');
-            return 
+            this.reset()
+            return 'fail'
         }
 
         if (this.accumulatedSteps < expectedSteps) {
-            console.log('continue');
-            return 
+            return 'continue'
         }
 
         this.currentStep++;
         this.accumulatedSteps = 0;
 
         if (this.currentStep === this.combo.length) {
-            console.log('✅ Vault Unlocked!');
             return 'success';
         }
 
         return 'continue';
+    }
+
+    reset(){
+        this.generateCombo()
     }
 
 }

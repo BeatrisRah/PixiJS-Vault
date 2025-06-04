@@ -43,4 +43,12 @@ export class Handle{
             ease: 'power2.out',
         });
     }
+
+    public spinCrazy() {
+        gsap.to(this.handle, {
+            rotation: this.handle.rotation + Math.PI * 6,
+            duration: 1.5,
+            ease: 'power4.inOut',
+        });
+    }
 }

@@ -23,7 +23,13 @@ export class Vault extends Container {
         this.handle = new Handle(this.door)
 
         app.stage.addChild(this)
-        this.handle.onRotate = (step, dir) => this.comboManager.checkCombo(step, dir)
+        this.handle.onRotate = (step, dir) => {
+            const result = this.comboManager.checkCombo(step, dir)
+            if( result === 'fail'){
+                this.handle.spinCrazy()
+            }
+            
+        }
         this.onResize()
     }
 
