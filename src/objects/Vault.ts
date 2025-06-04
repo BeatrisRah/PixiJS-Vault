@@ -1,31 +1,28 @@
 import { Application, Container, Sprite} from 'pixi.js';
 import { AssetLoader } from '../Assets';
 
+import type { ComboManager } from './ComboManager';
+import { Handle } from './Handle';
+
 export class Vault extends Container {
     app: Application;
     door: Sprite;
-    handle: Sprite;
-    handle_shadow: Sprite
+    handle: Handle
 
-    constructor(app: Application){
+    comboManager: ComboManager
+
+    constructor(app: Application, comboManager:ComboManager){
         super()
         this.app = app;
+        this.comboManager = comboManager
 
         this.door = AssetLoader.getSprite('door')
         this.door.anchor.set(0.5)
         this.addChild(this.door);
 
-        this.handle_shadow = AssetLoader.getSprite('handle_shadow')
-        this.handle_shadow.anchor.set(0.5)
-        this.handle_shadow.x = -70
-        this.handle_shadow.y = 50
-        this.door.addChild(this.handle_shadow)
-
-        this.handle = AssetLoader.getSprite('handle')
-        this.handle.anchor.set(0.5)
-        this.handle.x = -90
-        this.door.addChild(this.handle)
+        // this.handle.on('pointerdown', this.onHandleClick)
         
+        this.handle = new Handle(this.door)
 
         app.stage.addChild(this)
         this.onResize()
@@ -57,4 +54,6 @@ export class Vault extends Container {
         this.door.scale.set(clampedScale);
         
     }
+
+    
 }
