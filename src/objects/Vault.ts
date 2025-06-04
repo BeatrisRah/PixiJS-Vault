@@ -4,7 +4,7 @@ import { AssetLoader } from '../Assets';
 export class Vault extends Container {
     app: Application;
     door: Sprite;
-    // handle: Sprite;
+    handle: Sprite;
 
     constructor(app: Application){
         super()
@@ -13,6 +13,11 @@ export class Vault extends Container {
         this.door = AssetLoader.getSprite('door')
         this.door.anchor.set(0.5)
         this.addChild(this.door);
+
+        this.handle = AssetLoader.getSprite('handle')
+        this.handle.anchor.set(0.5)
+        this.handle.x = -90
+        this.door.addChild(this.handle)
         
 
         app.stage.addChild(this)
