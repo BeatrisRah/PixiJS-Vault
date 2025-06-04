@@ -19,12 +19,11 @@ export class Vault extends Container {
         this.door = AssetLoader.getSprite('door')
         this.door.anchor.set(0.5)
         this.addChild(this.door);
-
-        // this.handle.on('pointerdown', this.onHandleClick)
         
         this.handle = new Handle(this.door)
 
         app.stage.addChild(this)
+        this.handle.onRotate = (step, dir) => this.comboManager.checkCombo(step, dir)
         this.onResize()
     }
 

@@ -1,9 +1,12 @@
 import { Sprite } from "pixi.js";
 import { AssetLoader } from "../Assets";
+import type { Direction } from "../types/directionType";
+import { gsap } from 'gsap';
 
 export class Handle{
     handle: Sprite;
-    handle_shadow: Sprite
+    handle_shadow: Sprite;
+    onRotate!: (steps: number, dir: Direction) => void;
 
     constructor(door: Sprite){
         this.handle_shadow = AssetLoader.getSprite('handle_shadow')
@@ -19,5 +22,25 @@ export class Handle{
         door.addChild(this.handle)
 
         this.handle.cursor = 'pointer'
+        this.handle.on('pointerdown',(e:PointerEvent) => this.OnClick(e) )
+
+        
+    }
+    private OnClick(e: PointerEvent) {
+        const isLeft = e.clientX < window.innerWidth / 2;
+        const dir = isLeft ? 'counterclockwise' : 'clockwise';
+        this.rotateHandle(1, dir);
+        if (this.onRotate) this.onRotate(1, dir);
+    }
+
+    public rotateHandle(steps: number, dir: 'clockwise' | 'counterclockwise') {
+        const delta = (Math.PI / 3) * steps * (dir === 'clockwise' ? 1 : -1);
+        const target = this.handle.rotation + delta;
+    
+        gsap.to(this.handle, {
+            rotation: target,
+            duration: 0.5,
+            ease: 'power2.out',
+        });
     }
 }
