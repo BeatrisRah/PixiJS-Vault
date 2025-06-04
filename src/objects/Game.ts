@@ -1,12 +1,14 @@
 import { Application, Sprite} from 'pixi.js';
 import { AssetLoader } from '../Assets';
 import { Vault } from './Vault';
+import { ComboManager } from './ComboManager';
 
 
 export class Game {
     app: Application;
     vault: Vault;
     bg: Sprite
+    comboManager: ComboManager
 
     constructor(app:Application){
         this.app = app;
@@ -16,7 +18,9 @@ export class Game {
         
         this.app.stage.addChildAt(this.bg , 0);
 
-        this.vault = new Vault(this.app)
+        this.comboManager = new ComboManager()
+
+        this.vault = new Vault(this.app, this.comboManager)
         this.onResize()
         window.addEventListener('resize', () => this.onResize())
         
