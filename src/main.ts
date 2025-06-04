@@ -1,12 +1,18 @@
 import { Application} from 'pixi.js';
+import { AssetLoader } from './Assets';
+import { Game } from './objects/Game';
 
 (async () =>
   {
-      const app = new Application();
-  
-      await app.init({ background: '#1099bb', resizeTo: window });
-  
-      document.body.appendChild(app.canvas);
+    await AssetLoader.loadAll()
+
+    const app = new Application();
+
+    await app.init({resizeTo: window });
+
+    new Game(app)
+
+    document.body.appendChild(app.canvas);
   
       
   })();
