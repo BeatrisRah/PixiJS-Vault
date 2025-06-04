@@ -8,6 +8,7 @@ export class Vault extends Container {
     app: Application;
     door: Sprite;
     handle: Handle
+    door_open: Sprite
 
     comboManager: ComboManager
 
@@ -19,6 +20,11 @@ export class Vault extends Container {
         this.door = AssetLoader.getSprite('door')
         this.door.anchor.set(0.5)
         this.addChild(this.door);
+
+        this.door_open = AssetLoader.getSprite('door_open')
+        this.door_open.visible = false;
+        this.door_open.anchor.set(0.5)
+        this.addChild(this.door_open);
         
         this.handle = new Handle(this.door)
 
@@ -27,6 +33,8 @@ export class Vault extends Container {
             const result = this.comboManager.checkCombo(step, dir)
             if( result === 'fail'){
                 this.handle.spinCrazy()
+            } else if (result === "success"){
+                this.open()
             }
             
         }
@@ -57,8 +65,13 @@ export class Vault extends Container {
 
 
         this.door.scale.set(clampedScale);
-        
+        this.door_open.scale.set(clampedScale)
     }
 
-    
+    open(){
+        this.handle.handle.interactive = false;
+        this.door.visible = false;
+        this.door_open.visible = true;
+
+    }
 }

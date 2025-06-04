@@ -6,6 +6,7 @@ export class AssetLoader{
     private static assets: Record<string, string> = {
         background: 'assets/bg.png',
         door: '/assets/door.png',
+        door_open: '/assets/doorOpen.png',
         handle:'/assets/handle.png',
         handle_shadow:'/assets/handleShadow.png'
     };
