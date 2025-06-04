@@ -5,6 +5,8 @@ export class AssetLoader{
 
     private static assets: Record<string, string> = {
         background: 'assets/bg.png',
+        door: '/assets/door.png',
+        handle:'/assets/handle.png'
     };
 
     static async loadAll(): Promise<void> {
