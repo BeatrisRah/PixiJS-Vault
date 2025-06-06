@@ -16,7 +16,8 @@ export class Handle{
         door.addChild(this.handle_shadow)
 
         this.handle = AssetLoader.getSprite('handle')
-        this.handle.anchor.set(0.55, 0.5)
+        this.handle.anchor.set(0.5)
+        this.handle.x -= 20
         this.handle.interactive = true;
         door.addChild(this.handle)
 
