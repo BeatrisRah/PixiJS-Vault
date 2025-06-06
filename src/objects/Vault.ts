@@ -22,12 +22,12 @@ export class Vault extends Container {
         this.addChild(this.door);
 
         this.door_open = AssetLoader.getSprite('door_open')
-        this.door_open.visible = false;
         this.door_open.anchor.set(0.5)
+        this.door_open.visible = false;
+
         this.addChild(this.door_open);
         
         this.handle = new Handle(this.door)
-
         app.stage.addChild(this)
         this.handle.onRotate = (step, dir) => {
             const result = this.comboManager.checkCombo(step, dir)
@@ -72,6 +72,6 @@ export class Vault extends Container {
         this.handle.handle.interactive = false;
         this.door.visible = false;
         this.door_open.visible = true;
-
+        this.door_open.x += 350
     }
 }
