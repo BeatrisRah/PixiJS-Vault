@@ -8,7 +8,8 @@ export class AssetLoader{
         door: '/assets/door.png',
         door_open: '/assets/doorOpen.png',
         handle:'/assets/handle.png',
-        handle_shadow:'/assets/handleShadow.png'
+        handle_shadow:'/assets/handleShadow.png',
+        sparkle:'/assets/blink.png'
     };
 
     static async loadAll(): Promise<void> {

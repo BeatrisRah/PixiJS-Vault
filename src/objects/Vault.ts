@@ -3,12 +3,14 @@ import { AssetLoader } from '../Assets';
 
 import type { ComboManager } from './ComboManager';
 import { Handle } from './Handle';
+import { Treasure } from './Treasure';
 
 export class Vault extends Container {
     app: Application;
     door: Sprite;
     handle: Handle
     door_open: Sprite
+    treasure: Treasure
 
     comboManager: ComboManager
 
@@ -38,6 +40,11 @@ export class Vault extends Container {
             }
             
         }
+
+        this.treasure = new Treasure(this.app)
+        this.addChild(this.treasure)
+
+
         this.onResize()
     }
 
@@ -73,5 +80,6 @@ export class Vault extends Container {
         this.door.visible = false;
         this.door_open.visible = true;
         this.door_open.x += 350
+        this.treasure.createSparkles()
     }
 }
