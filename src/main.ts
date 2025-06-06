@@ -10,9 +10,9 @@ import { Game } from './objects/Game';
 
     await app.init({resizeTo: window });
 
-    new Game(app)
-
     document.body.appendChild(app.canvas);
+    
+    new Game(app)
   
       
   })();

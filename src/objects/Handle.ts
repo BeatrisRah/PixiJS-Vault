@@ -11,19 +11,18 @@ export class Handle{
     constructor(door: Sprite){
         this.handle_shadow = AssetLoader.getSprite('handle_shadow')
         this.handle_shadow.anchor.set(0.5)
-        this.handle_shadow.x = -70
-        this.handle_shadow.y = 50
+        this.handle_shadow.x = -10
+        this.handle_shadow.y = 40
         door.addChild(this.handle_shadow)
 
         this.handle = AssetLoader.getSprite('handle')
-        this.handle.anchor.set(0.5)
-        this.handle.x = -90
+        this.handle.anchor.set(0.55, 0.5)
         this.handle.interactive = true;
         door.addChild(this.handle)
 
         this.handle.cursor = 'pointer'
         this.handle.on('pointerdown',(e:PointerEvent) => this.OnClick(e) )
-
+        
         
     }
     private OnClick(e: PointerEvent) {

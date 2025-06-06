@@ -23,7 +23,7 @@ export class Treasure extends Container {
             sparkle.alpha = 0;
 
             const treasureCenterX = this.app.screen.width / 2;
-            const treasureCenterY = this.app.screen.height / 2 + 95;
+            const treasureCenterY = this.app.screen.height / 2 + 80;
 
             const spreadX = 200;
             const spreadY = 80;

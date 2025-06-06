@@ -20,7 +20,7 @@ export class Vault extends Container {
         this.comboManager = comboManager
 
         this.door = AssetLoader.getSprite('door')
-        this.door.anchor.set(0.5)
+        this.door.anchor.set(0.47, 0.5)
         this.addChild(this.door);
 
         this.door_open = AssetLoader.getSprite('door_open')
@@ -44,14 +44,13 @@ export class Vault extends Container {
         this.treasure = new Treasure(this.app)
         this.addChild(this.treasure)
 
-
         this.onResize()
     }
 
     onResize(){
         const baseWidth = 1533;
         const baseHeight = 1144;
-        const baseScale = 0.39;
+        const baseScale = 0.4;
 
 
         const scaleX = this.app.screen.width / baseWidth;
