@@ -36,12 +36,19 @@ export class Handle{
     public rotateHandle(steps: number, dir: 'clockwise' | 'counterclockwise') {
         const delta = (Math.PI / 3) * steps * (dir === 'clockwise' ? 1 : -1);
         const target = this.handle.rotation + delta;
+        const target_shadow = this.handle_shadow.rotation + delta
     
         gsap.to(this.handle, {
             rotation: target,
             duration: 0.5,
             ease: 'power2.out',
         });
+
+        gsap.to(this.handle_shadow, {
+            rotation: target_shadow,
+            duration: 0.5,
+            ease: 'power2.out',
+        })
     }
 
     public spinCrazy() {
@@ -50,5 +57,11 @@ export class Handle{
             duration: 1.5,
             ease: 'power4.inOut',
         });
+
+        gsap.to(this.handle_shadow, {
+            rotation: this.handle_shadow.rotation + Math.PI * 6,
+            duration: 1.5,
+            ease: 'power4.inOut',
+        })
     }
 }
